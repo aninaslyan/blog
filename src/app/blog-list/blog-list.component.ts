@@ -1,8 +1,5 @@
-import { AfterContentChecked, Component, OnInit } from '@angular/core';
-import axios from 'axios';
-
-import { apiKey } from '../config';
-import { Posts } from '../../types';
+import { Component, OnInit } from '@angular/core';
+import { PostService } from '../services/post.service';
 
 @Component({
   selector: 'app-blog-list',
@@ -10,21 +7,14 @@ import { Posts } from '../../types';
   styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit {
-  blogs: Posts;
+  blogs: any;
 
-  constructor() {
+  constructor(private postService: PostService) {
   }
-  //todo: make some filtering on api call based on from & publishedAt
-  getPosts = async function () {
-    try {
-      const res = await axios.get(`https://newsapi.org/v2/everything?q=bitcoin&from=2019-10-12&sortBy=publishedAt&apiKey=${apiKey}`);
-      return res.data;
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
-  async ngOnInit() {
-    this.blogs = await this.getPosts();
+  ngOnInit(): void {
+    this.postService.getPosts().subscribe(posts => {
+      this.blogs = posts;
+    });
   }
 }
