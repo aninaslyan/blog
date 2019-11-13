@@ -10,6 +10,7 @@ import { Post } from '../../types';
 })
 export class BlogListComponent implements OnInit {
   blogs: Post[];
+  modalIsOpened = false;
 
   constructor(private postService: PostService) {
   }
@@ -19,5 +20,13 @@ export class BlogListComponent implements OnInit {
       this.blogs = posts;
       console.log(this.blogs);
     });
+  }
+
+  onOpenModal() {
+    this.modalIsOpened = !this.modalIsOpened;
+  }
+
+  onModalClick(evn) {
+    this.modalIsOpened = evn;
   }
 }

@@ -11,12 +11,14 @@ import { PostService } from './services/post.service';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
+import { AddPostComponent } from './blog-list/add-post/add-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogListComponent,
-    BlogComponent
+    BlogComponent,
+    AddPostComponent
   ],
   imports: [
     BrowserModule,
