@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Post } from '../../../types';
+import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-post',
@@ -7,23 +7,20 @@ import { Post } from '../../../types';
   styleUrls: ['./add-post.component.css']
 })
 export class AddPostComponent {
-  @Input() isModalOpened: boolean;
-  @Output() modal = new EventEmitter();
+  private modalRef;
 
-  item: Post = {
-    urlToImage: '',
-    title: '',
-    author: '',
-    description: '',
-    content: '',
-    publishedAt: Date()
-  };
-
-  constructor() {
+  constructor(private modalService: NgbModal) {
   }
 
-  onModalClick() {
-    this.isModalOpened = !this.isModalOpened;
-    this.modal.emit(this.isModalOpened);
+  onModalOpen(content) {
+    this.modalRef = this.modalService.open(content, { size: 'lg' });
+  }
+
+  onModalClose() {
+    this.modalRef.close();
+  }
+
+  onModalDismiss() {
+    this.modalRef.dismiss();
   }
 }

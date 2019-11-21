@@ -1,15 +1,6 @@
 <div class="py-5 bg-light">
   <div class="container">
-    <button
-      *ngIf="!modalIsOpened"
-      (click)="onOpenModal()"
-      class="btn btn-info"
-    >Add Post</button>
-    <app-add-post
-      *ngIf="modalIsOpened"
-      [isModalOpened]="modalIsOpened"
-      (modal)="onModalClick($event)"
-    ></app-add-post>
+    <app-add-post></app-add-post>
     <br>
     <br>
     <br>

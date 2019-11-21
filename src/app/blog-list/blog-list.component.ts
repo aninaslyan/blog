@@ -14,19 +14,11 @@ export class BlogListComponent implements OnInit {
 
   constructor(private postService: PostService) {
   }
-// todo make async await
+
   ngOnInit(): void {
     this.postService.getPosts().subscribe(posts => {
       this.blogs = posts;
       console.log(this.blogs);
     });
-  }
-
-  onOpenModal() {
-    this.modalIsOpened = !this.modalIsOpened;
-  }
-
-  onModalClick(evn) {
-    this.modalIsOpened = evn;
   }
 }
