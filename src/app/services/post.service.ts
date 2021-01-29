@@ -14,13 +14,15 @@ export class PostService {
   constructor(public firestore: AngularFirestore) {
     this.postsCollection = firestore.collection<Post>('posts');
 
-    this.posts = this.postsCollection.snapshotChanges().pipe(
-      map(changes => changes.map(a => {
-        const data = a.payload.doc.data() as Post;
-        const id = a.payload.doc.id;
-        return {id, ...data};
-      }))
-    );
+    this.posts = this.postsCollection
+      .snapshotChanges()
+      .pipe(
+        map(changes => changes.map(a => {
+          const data = a.payload.doc.data() as Post;
+          const id = a.payload.doc.id;
+          return {id, ...data};
+        }))
+      );
   }
 
   getPosts() {
